@@ -1,0 +1,84 @@
+<!--spider_list.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Анализ сайта</title>
+</head>
+<body>
+    <div class="content">
+        <div class="header">
+            <ul>
+                <li><a href="">Главная</a></li>
+                <li><a href="">Контакты</a></li>
+            </ul>
+            <a href="{% url  'home'%}">Анализ сайта</a>
+        </div>
+        <div class="main_contetnt">
+            <h1>Анализ сайта</h1>
+            <p class="lead">анализ сайта - Онлайн, бесплатный. сео сервис анализ сайта или экспресс анализ страницы веб сайта.</p>
+            <br>
+            <table border="2">
+                <caption>Анализ структуры сайта</caption>
+                <tr>
+                    <td>№</td>
+                    <td>URL - страницы</td>
+                    <td>Количество входящих ссылок</td>
+                    <td>Количество исходящих ссылок</td>
+                    <td>PageRank страницы</td>
+                </tr>
+
+                {% for  tb in tbl %}
+                    <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{ tb.url }}</td>
+                    <td>{{ tb.in_count }}</td>
+                    <td>{{ tb.out_count }}</td>
+                    <td>{{ tb.rank }}</td>
+                </tr>
+
+
+                {% endfor %}
+
+            </table>
+            <br>
+             <table border="2">
+                <caption>Битые ссылки</caption>
+                <tr>
+                    <td>№</td>
+                    <td>URL - страницы</td>
+                </tr>
+
+                {% for  url in brk_link %}
+                    <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{ url }}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+            <br>
+             <table border="2">
+                 <caption>Внешные ссылки сайта</caption>
+                <tr>
+                    <td>№</td>
+                    <td>URL - страницы</td>
+                </tr>
+
+                {% for  url in ex_link %}
+                    <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{ url }}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+
+
+
+
+        </div>
+
+    </div>
+</body>
+</html>
